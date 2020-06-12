@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const express = require('express');
+const cTable = require('console.table');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//app.use(express.send());
+app.use(express.json);
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
@@ -32,7 +33,7 @@ app.use((req, res) => {
 function viewDepartments() {
     connection.query('SELECT * FROM department', function(err, res) {
       if (err) throw err;
-      console.log(res);
+      console.table(res);
       dbAction();
     });    
 }
@@ -40,7 +41,7 @@ function viewDepartments() {
 function viewRoles() {
   connection.query('SELECT * FROM role', function(err, res) {
     if (err) throw err;
-    console.log(res);
+    console.table(res);
     dbAction();
   });
 }
@@ -48,7 +49,7 @@ function viewRoles() {
 function viewEmployees() {
   connection.query('SELECT * FROM employee', function(err, res) {
     if (err) throw err;
-    console.log(res);
+    console.table(res);
     dbAction();
   });  
 }
@@ -57,7 +58,6 @@ function addDepartment() {
   inquirer
   .prompt({ name: 'name', message:"Department's name?"})
   .then(answers => {
-    console.log("==> "+answers.name);
     const query = connection.query(
       'INSERT INTO department SET ?',
       {
