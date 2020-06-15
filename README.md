@@ -11,4 +11,6 @@ use GitHub to clone the application.
 From a command line issue 'npm start'.
 
 
-GitHub Link: 
+GitHub Link: https://github.com/rhmorganjr/employee-tracker.git
+
+Video Link: https://youtu.be/4IUnBbq09hY
