@@ -129,7 +129,7 @@ function updateEmployeeRole() {
           role_id: answers.role_id
         },
         {
-          employee_id: 6
+          id: 6
         }
       ],
         function(err, res) {
